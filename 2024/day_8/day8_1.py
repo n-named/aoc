@@ -4,7 +4,7 @@ import re
 with open('input.txt', 'r') as f:
     input_data = f.read()
 
-ants_map = [list(line) for line in input_data.split("\n")]
+ants_map = [list(row) for row in input_data.split("\n")]
 anod_map = [row[:] for row in ants_map]
 
 frqs = list(set(list(input_data)))
@@ -14,13 +14,13 @@ frqs.remove('\n')
 frqs_crds = {}
 
 for frq in frqs:
-    for line in range(len(ants_map)):
-        for row in range(len(ants_map)):
-            if frq == ants_map[line][row]:
+    for row in range(len(ants_map)):
+        for col in range(len(ants_map)):
+            if frq == ants_map[row][col]:
                 if frq in frqs_crds:
-                    frqs_crds[frq].append([line, row])
+                    frqs_crds[frq].append([row, col])
                 else:
-                    frqs_crds[frq] = [[line, row]]
+                    frqs_crds[frq] = [[row, col]]
                     
     for crd0 in range(len(frqs_crds[frq])):
         for crd in range(len(frqs_crds[frq])-1):
@@ -35,5 +35,5 @@ for frq in frqs:
             if (X2[0] >= 0 and X2[0] < len(anod_map)) and (X2[1] >= 0 and X2[1] < len(anod_map[0])):
                 anod_map[X2[0]][X2[1]] = "#"
 
-unq_locs = len(re.findall("#", "\n".join(["".join(line) for line in anod_map])))
+unq_locs = len(re.findall("#", "\n".join(["".join(row) for row in anod_map])))
 print(unq_locs)
