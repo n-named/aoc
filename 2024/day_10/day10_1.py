@@ -17,13 +17,13 @@ def search(top_map, crd, ends):
 with open('input.txt', 'r') as f:
     input_data = f.read()
 
-top_map = [[int(el) for el in list(line)] for line in input_data.split("\n")]
+top_map = [[int(el) for el in list(row)] for row in input_data.split("\n")]
 
 zeros = []
-for line in range(len(top_map)):
-    for row in range(len(top_map[line])):
-        if top_map[line][row] == 0:
-            zeros.append([line, row])
+for row in range(len(top_map)):
+    for col in range(len(top_map[row])):
+        if top_map[row][col] == 0:
+            zeros.append([row, col])
 
 score = 0
 for crd in zeros:
