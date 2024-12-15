@@ -43,21 +43,21 @@ def search(gmap, crd, plant, plants, fences):
 with open('input.txt', 'r') as f:
     input_data = f.read()
 
-gmap = [list(line) for line in input_data.split("\n")]
+gmap = [list(row) for row in input_data.split("\n")]
 
 revised = []
 
 price = 0
-for line in range(len(gmap)):
-    for row in range(len(gmap[line])):
-        if [line,row] in revised:
+for row in range(len(gmap)):
+    for col in range(len(gmap[row])):
+        if [row,col] in revised:
             continue
         
-        plant = gmap[line][row]
+        plant = gmap[row][col]
         fences = [{},{}]
         plants = []
 
-        plants, fences = search(gmap, [line,row], plant, plants, fences)
+        plants, fences = search(gmap, [row,col], plant, plants, fences)
         
         revised.extend(plants)
         
